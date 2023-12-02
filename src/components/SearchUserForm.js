@@ -10,7 +10,7 @@ const SearchUserForm = ({ setUserID, setContent }) => {
         setUserID(refUserID.current.value);
         console.log(`current user ID is ${refUserID.current.value}`);
         setContent(<>
-            <GetSingleUser userID={refUserID.current.value} />
+            <GetSingleUser userID={refUserID.current.value} setContent={setContent} />
             <RenderButtons setContent={setContent} />
         </>);
     };

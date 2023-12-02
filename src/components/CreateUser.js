@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import RenderUser from "./RenderUser";
 import RenderButtons from "./RenderButtons";
+import RenderError from "./RenderError";
 
 const CreateUser = ({ user, setContent }) => {
     let url = 'https://reqres.in/api/users/';
@@ -10,7 +11,11 @@ const CreateUser = ({ user, setContent }) => {
     useEffect(() => {
         axios.post(url, user)
             .then(setResponse)
-            .catch((error) => { console.log(error) });
+            .catch((error) => {
+                setContent(<RenderError
+                    error={error}
+                    status={error.response.status} />)
+            });
     }, []);
     if (response) {
         console.log(response.data);
@@ -18,7 +23,7 @@ const CreateUser = ({ user, setContent }) => {
             <>
                 <RenderUser user={response.data} />
                 <RenderButtons setContent={setContent} />
-                User successfully created.
+                <p>User successfully created.</p>
             </>
         );
     }

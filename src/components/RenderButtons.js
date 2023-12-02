@@ -1,15 +1,34 @@
 import CreateForm from "./CreateForm";
+import DeleteUser from "./DeleteUser";
+import UpdateUser from "./UpdateUser";
 
 const RenderButtons = ({ setContent }) => {
-    const handleClick = () => {
+    let user = {//temp data
+        name: "UPDUSERNAME",
+        job: "UPDUSERJOB"
+    }
+    let userID = 3;//temp data
+
+    const handleClickCreate = () => {
         setContent(<CreateForm setContent={setContent} />);
     }
+
+    const handleClickUpdate = () => {
+        setContent(<UpdateUser user={user} userID={userID} setContent={setContent} />);
+    }
+
+    const handleClickDelete = () => {
+        setContent(<DeleteUser userID={userID} setContent={setContent} />);
+    }
+
     return (
         <div className="buttons">
             <button
-                onClick={handleClick}>Create user</button>
-            <button>Update user</button>
-            <button>Delete user</button>
+                onClick={handleClickCreate}>Create user</button>
+            <button
+                onClick={handleClickUpdate}>Update user</button>
+            <button
+                onClick={handleClickDelete}>Delete user</button>
         </div>
     );
 }

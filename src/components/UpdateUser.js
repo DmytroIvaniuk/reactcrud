@@ -1,15 +1,16 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import RenderUser from "./RenderUser";
+import RenderButtons from "./RenderButtons";
 import RenderError from "./RenderError";
 
-function GetSingleUser({ userID, setContent }) {
+const UpdateUser = ({ user, userID, setContent }) => {
     let url = 'https://reqres.in/api/users/';
     const [response, setResponse] = useState(null);
     const userURL = url + userID;
     useEffect(() => {
         if (userID) {
-            axios.get(userURL)
+            axios.put(userURL, user)
                 .then(setResponse)
                 .catch((error) => {
                     setContent(<RenderError
@@ -19,12 +20,15 @@ function GetSingleUser({ userID, setContent }) {
         }
     }, [userURL]);
     if (response) {
-        let user = response.data.data;
-        user.name = `${user.first_name} ${user.last_name}`;
+        console.log(response.data);
         return (
-            <RenderUser user={user} />
+            <>
+                <RenderUser user={response.data} />
+                <RenderButtons setContent={setContent} />
+                <p>User successfully updated at {response.data.updatedAt}</p>
+            </>
         );
     }
 }
 
-export default GetSingleUser;
+export default UpdateUser;
