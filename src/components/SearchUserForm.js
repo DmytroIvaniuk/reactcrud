@@ -1,17 +1,19 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import GetSingleUser from "./GetSingleUser";
-import RenderButtons from "./RenderButtons";
+import Buttons from "./Buttons";
+import { ContextStore } from "../contexts/ContextStore";
 
-const SearchUserForm = ({ setUserID, setContent }) => {
+const SearchUserForm = ({ setUserID }) => {
     const refUserID = useRef();
-
+    const store = useContext(ContextStore);
+    const setContent = store.setContent;
     const submit = (e) => {
         e.preventDefault();
         setUserID(refUserID.current.value);
         console.log(`current user ID is ${refUserID.current.value}`);
         setContent(<>
-            <GetSingleUser userID={refUserID.current.value} setContent={setContent} />
-            <RenderButtons setContent={setContent} />
+            <GetSingleUser userID={refUserID.current.value} />
+            <Buttons />
         </>);
     };
 

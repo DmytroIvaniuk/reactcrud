@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import RenderUser from "./RenderUser";
 import RenderError from "./RenderError";
+import { ContextStore } from "../contexts/ContextStore";
 
-function GetSingleUser({ userID, setContent }) {
-    let url = 'https://reqres.in/api/users/';
+function GetSingleUser({ userID }) {
+    const store = useContext(ContextStore);
+    let url = store.url;
+    const setContent = store.setContent;
+    const setUser = store.setUser;
     const [response, setResponse] = useState(null);
     const userURL = url + userID;
     useEffect(() => {
@@ -21,6 +25,7 @@ function GetSingleUser({ userID, setContent }) {
     if (response) {
         let user = response.data.data;
         user.name = `${user.first_name} ${user.last_name}`;
+        setUser(user);
         return (
             <RenderUser user={user} />
         );

@@ -1,17 +1,22 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import CreateUser from "./CreateUser"
 import UserInfoForm from "./UserInfoForm"
+import { ContextStore } from "../contexts/ContextStore";
 
-const CreateForm = ({ setContent }) => {
+
+const CreateForm = () => {
     const [name, setName] = useState();
     const [job, setJob] = useState();
+    const store = useContext(ContextStore);
+    const setContent = store.setContent;
+
     let user = {
         name: name,
         job: job
     }
 
     const handleClick = () => {
-        setContent(<CreateUser user={user} setContent={setContent} />)
+        setContent(<CreateUser user={user} />)
     }
     return (
         <>

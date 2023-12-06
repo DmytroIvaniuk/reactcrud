@@ -1,24 +1,24 @@
 import CreateForm from "./CreateForm";
 import DeleteUser from "./DeleteUser";
-import UpdateUser from "./UpdateUser";
+import UpdateCurrentUser from "./UpdateCurrentUser";
+import { ContextStore } from "../contexts/ContextStore";
+import { useContext } from "react";
 
-const RenderButtons = ({ setContent }) => {
-    let user = {//temp data
-        name: "UPDUSERNAME",
-        job: "UPDUSERJOB"
-    }
-    let userID = 3;//temp data
+const RenderButtons = () => {
+    const store = useContext(ContextStore);
+    const setContent = store.setContent;
+    const user = store.user;
 
     const handleClickCreate = () => {
-        setContent(<CreateForm setContent={setContent} />);
+        setContent(<CreateForm />);
     }
 
     const handleClickUpdate = () => {
-        setContent(<UpdateUser user={user} userID={userID} setContent={setContent} />);
+        setContent(<UpdateCurrentUser user={user} userID={user.id} />);
     }
 
     const handleClickDelete = () => {
-        setContent(<DeleteUser userID={userID} setContent={setContent} />);
+        setContent(<DeleteUser userID={user.id} />);
     }
 
     return (
