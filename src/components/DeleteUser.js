@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import Buttons from "./Buttons";
 import RenderError from "./RenderError";
 import { ContextStore } from "../contexts/ContextStore";
+import CreateUserButton from "./Buttons/CreateUserButton";
 
-const DeleteUser = ({ userID }) => {
+const DeleteUser = () => {
     const store = useContext(ContextStore);
     let url = store.url;
+    const userID = store.userID;
+    const setUserID = store.setUserID;
     const setContent = store.setContent;
     const [response, setResponse] = useState(null);
     let userURL = url + userID;
@@ -26,11 +28,12 @@ const DeleteUser = ({ userID }) => {
     }, [userURL]);
     if (response) {
         console.log(response.data);
+        setUserID(0);
         return (
             <>
                 <p className="delete-message">
                     User with ID {userID} successfully deleted!</p>
-                <Buttons />
+                <CreateUserButton />
             </>
         );
     }

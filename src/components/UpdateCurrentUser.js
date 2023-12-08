@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import RenderUser from "./RenderUser";
-import Buttons from "./Buttons";
 import RenderError from "./RenderError";
 import { ContextStore } from "../contexts/ContextStore";
+import CreateUserButton from "./Buttons/CreateUserButton";
 
-const UpdateUser = ({ user, userID }) => {
+const UpdateCurrentUser = ({ user }) => {
     const store = useContext(ContextStore);
     let url = store.url;
+    const userID = store.userID;
     const setContent = store.setContent;
     const setUser = store.setUser;
     const [response, setResponse] = useState(null);
@@ -22,18 +23,18 @@ const UpdateUser = ({ user, userID }) => {
                         status={error.response.status} />)
                 });
         }
-    }, [userURL]);
+    }, [user]);
     if (response) {
-        console.log(response.data);
         setUser(response.data);
+        console.log(response.data);
         return (
             <>
                 <RenderUser user={response.data} />
-                <Buttons />
+                <CreateUserButton />
                 <p>User successfully updated at {response.data.updatedAt}</p>
             </>
         );
     }
 }
 
-export default UpdateUser;
+export default UpdateCurrentUser;

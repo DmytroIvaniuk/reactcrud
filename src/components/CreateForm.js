@@ -5,8 +5,8 @@ import { ContextStore } from "../contexts/ContextStore";
 
 
 const CreateForm = () => {
-    const [name, setName] = useState();
-    const [job, setJob] = useState();
+    const [name, setName] = useState("");
+    const [job, setJob] = useState("");
     const store = useContext(ContextStore);
     const setContent = store.setContent;
 

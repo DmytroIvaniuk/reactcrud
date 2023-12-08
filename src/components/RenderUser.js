@@ -1,6 +1,9 @@
 import UserInfoForm from "./UserInfoForm";
 import defaultimg from "../defaultImg.jpg"
 import { useState } from "react";
+import UpdateCurrentUserButton from "./Buttons/UpdateCurrentUserButton";
+import DeleteUserButton from "./Buttons/DeleteUserButton";
+import Buttons from "./Buttons";
 
 const Avatar = ({ user }) => {
     if (user.hasOwnProperty("avatar")) {
@@ -26,17 +29,25 @@ const RenderEmail = ({ user }) => {
 
 const RenderUser = ({ user }) => {
     const [name, setName] = useState(user.name);
-    const [job, setJob] = useState(user.job);
+    const [job, setJob] = useState(user.job ??= "");
+    user.name = name;
+    user.job = job;
     return (
-        <div className="user-container" id={user.id}>
-            <Avatar user={user} />
-            <UserInfoForm
-                name={name}
-                job={job}
-                setName={setName}
-                setJob={setJob} />
-            <RenderEmail user={user} />
-        </div>
+        <>
+            <div className="user-container" id={user.id}>
+                <Avatar user={user} />
+                <UserInfoForm
+                    name={name}
+                    job={job}
+                    setName={setName}
+                    setJob={setJob} />
+                <RenderEmail user={user} />
+            </div>
+            <Buttons>
+                <UpdateCurrentUserButton user={user} />
+                <DeleteUserButton />
+            </Buttons>
+        </>
     );
 }
 

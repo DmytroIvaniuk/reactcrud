@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import RenderUser from "./RenderUser";
-import Buttons from "./Buttons";
 import RenderError from "./RenderError";
 import { ContextStore } from "../contexts/ContextStore";
+import CreateUserButton from "./Buttons/CreateUserButton";
 
 const CreateUser = ({ user }) => {
     const store = useContext(ContextStore);
@@ -27,7 +27,7 @@ const CreateUser = ({ user }) => {
         return (
             <>
                 <RenderUser user={response.data} />
-                <Buttons />
+                <CreateUserButton />
                 <p>User successfully created.</p>
             </>
         );

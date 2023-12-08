@@ -63,7 +63,8 @@
 .buttons {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 10%;
 }
 
 .error-message {

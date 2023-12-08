@@ -1,7 +1,7 @@
 import { useRef, useContext } from "react";
 import GetSingleUser from "./GetSingleUser";
-import Buttons from "./Buttons";
 import { ContextStore } from "../contexts/ContextStore";
+import CreateUserButton from "./Buttons/CreateUserButton";
 
 const SearchUserForm = ({ setUserID }) => {
     const refUserID = useRef();
@@ -13,7 +13,7 @@ const SearchUserForm = ({ setUserID }) => {
         console.log(`current user ID is ${refUserID.current.value}`);
         setContent(<>
             <GetSingleUser userID={refUserID.current.value} />
-            <Buttons />
+            <CreateUserButton />
         </>);
     };
 
