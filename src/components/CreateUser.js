@@ -22,7 +22,7 @@ const CreateUser = ({ user }) => {
             });
     }, []);
     if (response) {
-        setUser(response.data);
+        //setUser(response.data);
         console.log(response.data);
         return (
             <>

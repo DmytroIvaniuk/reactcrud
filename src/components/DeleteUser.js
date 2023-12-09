@@ -28,7 +28,6 @@ const DeleteUser = () => {
     }, [userURL]);
     if (response) {
         console.log(response.data);
-        setUserID(0);
         return (
             <>
                 <p className="delete-message">
