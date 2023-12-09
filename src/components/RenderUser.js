@@ -1,6 +1,7 @@
 import UserInfoForm from "./UserInfoForm";
 import defaultimg from "../defaultImg.jpg"
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ContextStore } from "../contexts/ContextStore";
 import UpdateCurrentUserButton from "./Buttons/UpdateCurrentUserButton";
 import DeleteUserButton from "./Buttons/DeleteUserButton";
 import Buttons from "./Buttons";
@@ -30,8 +31,10 @@ const RenderEmail = ({ user }) => {
 const RenderUser = ({ user }) => {
     const [name, setName] = useState(user.name);
     const [job, setJob] = useState(user.job ??= "");
-    user.name = name;
-    user.job = job;
+    useEffect(() => {
+        setName(user.name);
+        setJob(user.job);
+    }, [user]);
     return (
         <>
             <div className="user-container" id={user.id}>

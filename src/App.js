@@ -9,14 +9,21 @@ function App() {
     name: "",
     job: ""
   });
-  const [name, setName] = useState(user.name);
-  const [job, setJob] = useState(user.job ??= "");
+  const [loading, setLoading] = useState(false);
   const [userID, setUserID] = useState("");
   const [content, setContent] = useState(null);
 
   return (
     <div className="App">
-      <ContextStore.Provider value={{ setContent, userID, url, user, setUser, name, setName, job, setJob }}>
+      <ContextStore.Provider value={{
+        setContent,
+        userID,
+        url,
+        user,
+        setUser,
+        loading,
+        setLoading
+      }}>
         <SearchUserForm setUserID={setUserID} />
         <Content content={content} />
       </ContextStore.Provider>

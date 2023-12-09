@@ -9,12 +9,15 @@ function GetSingleUser({ userID }) {
     let url = store.url;
     const setContent = store.setContent;
     const setUser = store.setUser;
+    const setLoading = store.setLoading;
     const [response, setResponse] = useState(null);
     const userURL = url + userID;
     useEffect(() => {
         if (userID) {
+            setLoading(true);
             axios.get(userURL)
                 .then(setResponse)
+                .then(() => setLoading(false))
                 .catch((error) => {
                     setContent(<RenderError
                         error={error}
@@ -23,7 +26,7 @@ function GetSingleUser({ userID }) {
         }
     }, [userURL]);
     if (response) {
-        let user = response.data.data;
+        const user = response.data.data;
         user.name = `${user.first_name} ${user.last_name}`;
         setUser(user);
         return (

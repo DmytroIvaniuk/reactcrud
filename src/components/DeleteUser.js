@@ -8,7 +8,6 @@ const DeleteUser = () => {
     const store = useContext(ContextStore);
     let url = store.url;
     const userID = store.userID;
-    const setUserID = store.setUserID;
     const setContent = store.setContent;
     const [response, setResponse] = useState(null);
     let userURL = url + userID;
