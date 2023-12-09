@@ -1,7 +1,6 @@
 import UserInfoForm from "./UserInfoForm";
 import defaultimg from "../defaultImg.jpg"
-import { useEffect, useState, useContext } from "react";
-import { ContextStore } from "../contexts/ContextStore";
+import { useEffect, useState } from "react";
 import UpdateCurrentUserButton from "./Buttons/UpdateCurrentUserButton";
 import DeleteUserButton from "./Buttons/DeleteUserButton";
 import Buttons from "./Buttons";

@@ -14,7 +14,7 @@ function GetSingleUser({ userID }) {
     const userURL = url + userID;
     useEffect(() => {
         if (userID) {
-            setLoading(true);
+            //setLoading(true);
             axios.get(userURL)
                 .then(setResponse)
                 .then(() => setLoading(false))

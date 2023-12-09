@@ -2,6 +2,7 @@ import SearchUserForm from "./components/SearchUserForm";
 import { useState } from "react";
 import { ContextStore } from "./contexts/ContextStore";
 import Content from "./components/Content";
+import Loader from "./components/Loader";
 
 function App() {
   let url = 'https://reqres.in/api/users/';
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <ContextStore.Provider value={{
+      {loading ? <Loader /> : <ContextStore.Provider value={{
         setContent,
         userID,
         url,
@@ -26,7 +27,7 @@ function App() {
       }}>
         <SearchUserForm setUserID={setUserID} />
         <Content content={content} />
-      </ContextStore.Provider>
+      </ContextStore.Provider>}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { ContextStore } from "../contexts/ContextStore";
 
 const UserInfoForm = ({ name, job, setName, setJob }) => {
